@@ -1,0 +1,30 @@
+Note: This is a companion problem to the System Design problem: Design TinyURL.
+TinyURL is a URL shortening service where you enter a URL such as https://leetcode.com/problems/design-tinyurl and it returns a short URL such as http://tinyurl.com/4e9iAk.
+
+Design the encode and decode methods for the TinyURL service. There is no restriction on how your encode/decode algorithm should work. You just need to ensure that a URL can be encoded to a tiny URL and the tiny URL can be decoded to the original URL.
+
+
+class Solution {
+public:
+    map<string, string> mp;
+    #define PREFIX "http://tinyurl.com/";
+    // Encodes a URL to a shortened URL.
+    string encode(string lurl) 
+    {
+        string surl= PREFIX;
+        surl+= to_string(mp.size() +1);
+        // cout<<surl<<endl;
+        mp.insert(pair<string, string>(surl, lurl));
+        return surl;
+    }
+
+    // Decodes a shortened URL to its original URL.
+    string decode(string surl)
+    {
+        return mp[surl];
+    }
+};
+
+// Your Solution object will be instantiated and called as such:
+// Solution solution;
+// solution.decode(solution.encode(url));
